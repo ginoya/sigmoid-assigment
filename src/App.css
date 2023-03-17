@@ -36,8 +36,7 @@
     transform: rotate(360deg);
   }
 }
-
-.css-k008qs{
-  justify-content: center;
-  margin-top: 15%;
+.MuiCircularProgress-root.MuiCircularProgress-indeterminate.MuiCircularProgress-colorPrimary{
+  margin: auto;
+  margin-top: 10%;
 }

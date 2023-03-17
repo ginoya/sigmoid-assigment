@@ -10,41 +10,49 @@ import { useSelector, useDispatch } from 'react-redux';
 import { FETCH_RANGE_DATA } from '../Redux/rangeReducer';
 import { FETCH_DASHBOARD_DATA } from '../Redux/dashboardReducer';
 import Dashboard from '../Dashboard/Dashboard';
-
+import Cookies from 'js-cookie';
+import { useNavigate } from "react-router-dom";
 function DatePickerValue() {
-
     const range = useSelector(state => state.range.range)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-    const [dashboardData, setDashboardData] = useState({ visible: false, error: "" })
+    const [dashboardData, setDashboardData] = useState({ visible: false, error: "", clicked:false })
 
-    useEffect(() => {
-        dispatch({
-            type: FETCH_RANGE_DATA,
-            payload: {
-                "organization": "DemoTest",
-                "view": "Auction"
-            }
-        })
-    }, [])
+    useEffect(()=>{
+        const authToken = Cookies.get('authToken');
+        if (!authToken) {
+            navigate('/')
+        }
+        else{
+            dispatch({
+                type: FETCH_RANGE_DATA,
+                payload: {
+                    "organization": "DemoTest",
+                    "view": "Auction"
+                }
+            })
+        }
+    },[])
 
     useEffect(() => {
         if (startDate && endDate) {
             if (startDate.isAfter(endDate)) {
-                setDashboardData({ visible: false, error: "Invalid date selection. Please select valid dates." })
+                setDashboardData({...dashboardData, visible: false, error: "Invalid date selection. Please select valid dates." })
             }
             else {
-                if (dashboardData.visible) {
+                if (dashboardData.clicked) {
                     dispatch({ type: FETCH_DASHBOARD_DATA, payload: { startDate, endDate } })
                 }
-                setDashboardData({ visible: true, error: "" })
+                setDashboardData({ ...dashboardData, visible: true, error: "" })
             }
         }
     }, [startDate, endDate]);
 
     const handleClick = () => {
+        setDashboardData({...dashboardData,clicked:true})
         dispatch({ type: FETCH_DASHBOARD_DATA, payload: { startDate, endDate } })
     }
     return (
@@ -52,6 +60,7 @@ function DatePickerValue() {
             <div className='date-picker-cpntainer'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
+                        style={{width:"320px",margin:"10px"}}
                         className='start-date-container'
                         label="Start Date"
                         minDate={dayjs(range?.startDate)}
@@ -60,6 +69,7 @@ function DatePickerValue() {
                         onChange={(newValue) => setStartDate(newValue)}
                     />
                     <DatePicker
+                        style={{width:"320px",margin:"10px"}}
                         className='end-date-container'
                         label="End Date"
                         minDate={dayjs(range?.startDate)}

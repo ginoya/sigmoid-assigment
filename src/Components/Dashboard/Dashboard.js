@@ -4,20 +4,10 @@ import PieChart from "./PieChart/PieChart";
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import Cookies from 'js-cookie';
-import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        const authToken = Cookies.get('authToken');
-        if (!authToken) {
-            navigate('/')
-        }
-    }, [])
-
+    
     const showDashboardContents = useSelector(state => state.dashboard.showDashboardContents)
     return (
         showDashboardContents ?

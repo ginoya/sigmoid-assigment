@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import {FETCH_RANGE_DATA,FETCH_RANGE_FAILED,FETCH_RANGE_SUCCESS} from '../rangeReducer';
-import { getDateRange } from '../../Datepicker/dashboardAPI';
+import {FETCH_RANGE_DATA,FETCH_RANGE_FAILED,FETCH_RANGE_SUCCESS} from '../redux/rangeReducer';
+import { getDateRange } from '../Components/Datepicker/dashboardAPI';
 
 
 function* fetchUser(action) {

@@ -36,7 +36,7 @@ const PieChart = () => {
         }]
     };
     return (
-        pieChartData.loading ?
+        pieChartData.loading  ?
             <Box sx={{ display: 'flex' }}>
                 <CircularProgress />
             </Box> :

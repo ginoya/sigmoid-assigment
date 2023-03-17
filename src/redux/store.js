@@ -3,8 +3,7 @@ import {configureStore,combineReducers} from '@reduxjs/toolkit';
 import rangeReducer from './rangeReducer';
 import dashboardReducer from './dashboardReducer';
 import createSagaMiddleware from 'redux-saga'
-import rootSaga from './Redux-Saga/rootSaga';
-
+import rootSaga from '../redux-saga/rootSaga';
 const sagaMiddleware = createSagaMiddleware()
 
 const combinedReducers = combineReducers({

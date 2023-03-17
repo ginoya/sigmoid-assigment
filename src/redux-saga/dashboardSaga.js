@@ -3,9 +3,9 @@ import {
     FETCH_DASHBOARD_DATA, FETCH_DASHBOARD_TABLE_SUCCESS, FETCH_DASHBOARD_TABLE_FAILED,
     FETCH_DASHBOARD_BARCHART_SUCCESS, FETCH_DASHBOARD_BARCHART_FAILED,
     FETCH_DASHBOARD_PIECHART_SUCCESS, FETCH_DASHBOARD_PIECHART_FAILED
-} from '../dashboardReducer';
-import { getDashboardData } from '../../Datepicker/dashboardAPI';
-import { getDashboardPayload, getPieChartPayload } from '../../Datepicker/datepickerHelper';
+} from '../redux/dashboardReducer';
+import { getDashboardData } from '../Components/Datepicker/dashboardAPI';
+import { getDashboardPayload, getPieChartPayload } from '../Components/Datepicker/datepickerHelper';
 function* fetchDashboardTableData(action) {
     const chartData = {
         id: '1516252439345',

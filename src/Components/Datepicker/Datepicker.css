@@ -1,0 +1,13 @@
+.date-picker-cpntainer{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+.MuiFormControl-root.MuiTextField-root.start-date-container.css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+    width: 320px;
+    margin: 10px;
+}
+.MuiFormControl-root.MuiTextField-root.end-date-container.css-1u3bzj6-MuiFormControl-root-MuiTextField-root{
+    width: 320px;
+    margin:10px
+}

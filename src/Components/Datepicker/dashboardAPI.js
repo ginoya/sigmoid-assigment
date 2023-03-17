@@ -1,4 +1,4 @@
-import { postAxios } from "../../axiosHelper/postAxios"
+import { postAxios } from "../../axios-helper/postAxios"
 
 const dateRangeURL = 'https://sigviewauth.sigmoid.io/api/v1/getDateRange';
 const dashboardDataURL = 'https://sigviewauth.sigmoid.io/api/v1/getData';

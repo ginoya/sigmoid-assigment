@@ -1,11 +1,13 @@
 import TextField from '@mui/material/TextField';
 import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Button from '@mui/material/Button';
 import Cookies from 'js-cookie';
 import Axios from 'axios';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import {FETCH_RANGE_AUTHORIZED} from '../../redux/rangeReducer';
 import './Signin.css';
 
 const authUrl = 'https://sigviewauth.sigmoid.io/signIn';
@@ -18,10 +20,13 @@ const initLoginObj = {
 }
 const Signin = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [loginDeatils, setLoginDeatils] = useState(initLoginObj);
+    const isUnauthotorize = useSelector(state => state.range.isUnauthotorize);
+
     useEffect(()=>{
         const authToken = Cookies.get('authToken');
-        if (authToken) {
+        if (authToken && !isUnauthotorize) {
             navigate('/dashboard')
         }
     },[])
@@ -38,6 +43,9 @@ const Signin = () => {
             if(authData.data.statusCode === "200"){
                 Cookies.set('authToken', authData.data.token, { expires: 7 });
                 setLoginDeatils(initLoginObj)
+                dispatch({
+                    type: FETCH_RANGE_AUTHORIZED,
+                })
                 navigate('/dashboard')
             }else{
                 setLoginDeatils({...loginDeatils,error:loginFailMessage})

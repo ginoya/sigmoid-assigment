@@ -3,11 +3,14 @@ const initState = {
     range:{
     },
     loading:true,
-    error:false
+    error:false,
+    isUnauthotorize : false
 }
 export const FETCH_RANGE_DATA = "FETCH_RANGE_DATA";
 export const FETCH_RANGE_SUCCESS = "FETCH_RANGE_SUCCESS";
 export const FETCH_RANGE_FAILED = "FETCH_RANGE_FAILED"
+export const FETCH_RANGE_UNAUTHORIZED = "FETCH_RANGE_UNAUTHORIZED";
+export const FETCH_RANGE_AUTHORIZED = "FETCH_RANGE_AUTHORIZED";
 
 const rangeReducer = (state=initState,action) =>{
     switch (action.type) {
@@ -33,6 +36,16 @@ const rangeReducer = (state=initState,action) =>{
                 range:{},
                 loading:false,
                 error:true
+            }
+        case FETCH_RANGE_UNAUTHORIZED:
+            return{
+                ...state,
+                isUnauthotorize : true
+            }
+        case FETCH_RANGE_AUTHORIZED:
+            return{
+                ...state,
+                isUnauthotorize : false
             }
         default:
             return state;

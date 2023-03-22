@@ -11,7 +11,10 @@ export const getDateRange = async (payload) =>{
         }
         else return null
     }
-    catch{
+    catch(e){
+        if(e?.response?.status === 401){
+            return 401
+        }
         return null
     }
 }

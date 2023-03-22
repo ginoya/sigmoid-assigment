@@ -14,9 +14,14 @@ import Cookies from 'js-cookie';
 import { useNavigate } from "react-router-dom";
 function DatePickerValue() {
     const range = useSelector(state => state.range.range)
+    const isUnauthotorize = useSelector(state => state.range.isUnauthotorize)
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    useEffect(()=>{
+        if(isUnauthotorize){
+            navigate('/')
+        }
+    },[isUnauthotorize])
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
     const [dashboardData, setDashboardData] = useState({ visible: false, error: "", clicked:false })

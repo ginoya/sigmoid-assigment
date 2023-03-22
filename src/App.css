@@ -32,11 +32,19 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-.MuiCircularProgress-root.MuiCircularProgress-indeterminate.MuiCircularProgress-colorPrimary{
+
+.MuiCircularProgress-root.MuiCircularProgress-indeterminate.MuiCircularProgress-colorPrimary {
   margin: auto;
   margin-top: 10%;
+}
+
+.search {
+  padding: 10px;
+  margin: 0 35px 20px;
+  width: 200px;
 }
